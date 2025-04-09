@@ -1,0 +1,22 @@
+.list {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+}
+
+.listItem {
+  padding: 12px;
+  border-bottom: 1px solid var(--accent-color);
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.listItem:hover {
+  background-color: var(--accent-color);
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}

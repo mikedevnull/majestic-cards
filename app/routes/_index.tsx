@@ -1,5 +1,5 @@
-import { Button, Container, Flex, Text } from "@radix-ui/themes";
-import type { MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,14 +8,14 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function Index() {
-  return (
-    <Container size="1" >
-      <Flex direction="column" gap="2">
-        <Text>Hello from Radix Themes :)</Text>
-        <Button>Let's go</Button>
-      </Flex>
-    </Container >
-  );
-}
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+  if (url.pathname === "/") {
+    return redirect("/browse");
+  }
+  return null;
+};
 
+export default function Index() {
+  return <div></div>;
+}

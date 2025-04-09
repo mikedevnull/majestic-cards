@@ -1,0 +1,35 @@
+:root {
+  --primary-color: #3f88c5;
+  --secondary-color: #e94f37;
+  --accent-color: #d6d6d6;
+  --text-color: #0c120c;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+  color: var(--primary-color);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid var(--accent-color);
+  background-color: var(--primary-color);
+}
+
+header .apptitle {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 12px;
+}
+
+main {
+  max-width: 768px;
+  margin: auto;
+}
