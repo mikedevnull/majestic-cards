@@ -1,6 +1,7 @@
 import {
   Links,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -24,6 +25,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <header>
           <span className="apptitle">Majestic Cards</span>
+          <nav>
+            <NavLink to="/">Active Card</NavLink>
+            <NavLink to="/library">Library</NavLink>
+          </nav>
         </header>
         <main className="container">{children}</main>
         <ScrollRestoration />

@@ -1,0 +1,68 @@
+.cardGrid {
+  /* display: grid; */
+  grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
+  gap: var(--size-1);
+  padding: var(--size-1);
+}
+
+.card {
+  border-radius: var(--border-radius);
+  border: 1px dashed var(--border-color);
+  padding: var(--size-1);
+  max-width: var(--size-6);
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  text-align: center;
+  transition: transform 0.2s;
+  /* min-height: var(--size-6); */
+  /* box-shadow: var(--shadow-color) 0px var(--shadow-offset) var(--shadow-blur); */
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.card {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+
+  padding: var(--size-1);
+  max-width: var(--size-6);
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  text-align: center;
+  transition: transform 0.2s;
+  /* min-height: var(--size-6); */
+  box-shadow: var(--shadow-color) var(--shadow-offset) var(--shadow-offset)
+    var(--shadow-blur);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.cardInactive {
+  border: 1px dashed var(--border-color);
+  box-shadow: none;
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin: auto;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--accent-color);
+
+  color: var(--invert-text-color);
+}
+
+.cardInactive .cardImage {
+  filter: blur(2px);
+  background-color: var(--border-color);
+}
+
+.card:hover {
+}

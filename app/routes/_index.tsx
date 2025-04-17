@@ -1,5 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { redirect } from "@remix-run/react";
+import type { MetaFunction } from "@remix-run/node";
+import { Card } from "~/components/card";
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,14 +8,8 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const url = new URL(request.url);
-  if (url.pathname === "/") {
-    return redirect("/browse");
-  }
-  return null;
-};
+// export const loader: LoaderFunction = async ({ request }) => {};
 
 export default function Index() {
-  return <div></div>;
+  return <Card active={false} title="No active card in reader" />;
 }
