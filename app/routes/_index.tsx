@@ -10,6 +10,6 @@ export const meta: MetaFunction = () => {
 
 // export const loader: LoaderFunction = async ({ request }) => {};
 
-export default function Index() {
+export default function CurrentCardDisplay() {
   return <Card active={false} title="No active card in reader" />;
 }
