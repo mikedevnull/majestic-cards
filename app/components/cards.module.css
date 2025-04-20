@@ -54,14 +54,26 @@
 
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  background-color: var(--accent-color);
+  /* background-color: var(--accent-color); */
 
   color: var(--invert-text-color);
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-shrink: 0 v;
+  flex-grow: 0;
+  display: block;
 }
 
 .cardInactive .cardImage {
-  filter: blur(2px);
-  background-color: var(--border-color);
+  border-style: dashed;
+  /* filter: blur(2px); */
+  /* background-color: var(--border-color); */
+}
+
+.cardInactive .cardImage img {
+  width: 64px;
 }
 
 .card:hover {

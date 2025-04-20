@@ -13,7 +13,24 @@ test("Renders if there's currently no active card", async () => {
     },
   ]);
 
-  render(<RemixStub />);
+  const result = render(<RemixStub />);
 
   await waitFor(() => screen.findByText("No active card in reader"));
+  expect(result.container).toMatchSnapshot();
+});
+
+test("Renders placeholder text and image for unkown cards without data", async () => {
+  const RemixStub = createRemixStub([
+    {
+      path: "/",
+      Component: CurrentCardDisplay,
+      loader() {
+        return { activeCard: { id: "123-456-789" } };
+      },
+    },
+  ]);
+
+  const result = render(<RemixStub />);
+  await waitFor(() => screen.findByText("Unknown card in reader"));
+  expect(result.container).toMatchSnapshot();
 });
