@@ -17,9 +17,9 @@ type Card = {
 };
 
 export const loader: LoaderFunction = async (): Promise<{
-  activeCard: Card;
+  activeCard?: Card;
 }> => {
-  return { activeCard: { id: "hello" } };
+  return { activeCard: undefined };
 };
 
 export default function CurrentCardDisplay() {
