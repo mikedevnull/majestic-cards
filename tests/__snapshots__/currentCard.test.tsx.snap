@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Renders if there's currently no active card 1`] = `
+<div>
+  <div
+    class="_card_2666b0 _cardInactive_2666b0"
+  >
+    <div
+      class="_cardImage_2666b0"
+    />
+    <span>
+      No active card in reader
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Renders placeholder text and image for unkown cards without data 1`] = `
+<div>
+  <div
+    class="_card_2666b0 "
+  >
+    <div
+      class="_cardImage_2666b0"
+    >
+      <img
+        alt="No image"
+        src="/app/assets/file-64.png"
+      />
+    </div>
+    <span>
+      Unknown card in reader
+    </span>
+  </div>
+</div>
+`;
