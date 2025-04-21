@@ -1,6 +1,7 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Card } from "~/components/card";
+import { activeCardChanged } from "~/lib/activeCard.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,7 +20,8 @@ type Card = {
 export const loader: LoaderFunction = async (): Promise<{
   activeCard?: Card;
 }> => {
-  return { activeCard: undefined };
+  const activeCard = activeCardChanged.getValue();
+  return { activeCard };
 };
 
 export default function CurrentCardDisplay() {
