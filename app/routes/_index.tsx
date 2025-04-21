@@ -1,5 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import { useLoaderData } from "react-router";
 import { Card } from "~/components/card";
 import { activeCardChanged } from "~/lib/activeCard.server";
 
@@ -17,7 +17,7 @@ type Card = {
   data?: CardData;
 };
 
-export const loader: LoaderFunction = async (): Promise<{
+export const loader = async (): Promise<{
   activeCard?: Card;
 }> => {
   const activeCard = activeCardChanged.getValue();
