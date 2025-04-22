@@ -6,7 +6,7 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "react-router-serve ./build/server/index.js",
     "test": "vitest",
     "test:e2e": "playwright test",
@@ -24,6 +24,9 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.8",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.25.1",
     "@playwright/test": "^1.52.0",
     "@react-router/dev": "^7.0.0",
     "@react-router/fs-routes": "^7.5.1",
@@ -41,6 +44,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^16.0.0",
     "happy-dom": "^17.4.4",
     "postcss": "^8.4.38",
     "typescript": "^5.1.6",
