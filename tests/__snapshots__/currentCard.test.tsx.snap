@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Renders if there's currently no active card 1`] = `
+exports[`CurrentCardDisplay > Renders if there's currently no active card 1`] = `
 <div>
   <div
     class="_card_2666b0 _cardInactive_2666b0"
@@ -15,7 +15,7 @@ exports[`Renders if there's currently no active card 1`] = `
 </div>
 `;
 
-exports[`Renders placeholder text and image for unkown cards without data 1`] = `
+exports[`CurrentCardDisplay > Renders placeholder text and image for unkown cards without data 1`] = `
 <div>
   <div
     class="_card_2666b0 "
