@@ -1,12 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import { z } from "zod";
+import { Card } from "./cardSchema";
 
-type CardData = { title: string; image?: string };
-
-type Card = {
-  id: string;
-  data?: CardData;
-};
 export const activeCardChanged = new BehaviorSubject<Card | undefined>(
   undefined
 );

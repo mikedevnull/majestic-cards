@@ -2,6 +2,8 @@ import type { MetaFunction } from "react-router";
 import { useLoaderData } from "react-router";
 import { Card } from "~/components/card";
 import { activeCardChanged } from "~/lib/activeCard.server";
+import { useActiveCardUpdateStream } from "./api.activeCard";
+import { ActiveCardPayload } from "~/lib/cardSchema";
 
 export const meta: MetaFunction = () => {
   return [
@@ -17,15 +19,15 @@ type Card = {
   data?: CardData;
 };
 
-export const loader = async (): Promise<{
-  activeCard?: Card;
-}> => {
+export const loader = async (): Promise<ActiveCardPayload> => {
   const activeCard = activeCardChanged.getValue();
   return { activeCard };
 };
 
 export default function CurrentCardDisplay() {
-  const { activeCard } = useLoaderData<typeof loader>();
+  const loaderData = useLoaderData<typeof loader>();
+  const activeCard = (useActiveCardUpdateStream() ?? loaderData).activeCard;
+
   if (!activeCard) {
     return <Card active={false} title="No active card in reader" />;
   } else {
