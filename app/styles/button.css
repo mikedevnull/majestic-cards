@@ -1,0 +1,12 @@
+button {
+  padding: 4px var(--size-1);
+  border-radius: calc(var(--border-radius) / 2);
+  color: var(--invert-text-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  width: fit-content;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--accent-color);
+}

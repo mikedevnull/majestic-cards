@@ -1,0 +1,45 @@
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--size-4);
+  background-color: var(--primary-color);
+  color: var(--invert-text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-color) 0px var(--shadow-offset) var(--shadow-blur);
+}
+
+header .apptitle {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 0 var(--size-2);
+}
+
+header nav {
+  padding: 0 var(--size-2);
+  display: flex;
+  gap: var(--size-1);
+}
+
+header nav a {
+  padding: var(--size-1);
+  border-radius: var(--border-radius);
+  color: var(--invert-text-color);
+}
+
+header nav a:hover {
+  background-color: var(--accent-color);
+}
+
+header nav a.active {
+  background-color: var(--accent-color);
+}
+
+main {
+  padding-top: var(--size-1);
+  max-width: 768px;
+  margin: auto;
+}
