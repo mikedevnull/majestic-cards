@@ -27,19 +27,6 @@
     display: flex;
     justify-content: flex-end;
     gap: var(--size-1);
-
-    button {
-      height: var(--size-2);
-      min-width: var(--size-4);
-      border-radius: var(--border-radius);
-      color: var(--invert-text-color);
-      background-color: var(--primary-color);
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: var(--accent-color);
-    }
   }
 }
 
