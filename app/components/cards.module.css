@@ -7,23 +7,6 @@
 
 .card {
   border-radius: var(--border-radius);
-  border: 1px dashed var(--border-color);
-  padding: var(--size-1);
-  max-width: var(--size-6);
-  width: fit-content;
-  height: fit-content;
-  margin: auto;
-  text-align: center;
-  transition: transform 0.2s;
-  /* min-height: var(--size-6); */
-  /* box-shadow: var(--shadow-color) 0px var(--shadow-offset) var(--shadow-blur); */
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-1);
-}
-
-.card {
-  border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
 
   padding: var(--size-1);
@@ -39,11 +22,25 @@
   display: flex;
   flex-direction: column;
   gap: var(--size-1);
-}
 
-.cardInactive {
-  border: 1px dashed var(--border-color);
-  box-shadow: none;
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--size-1);
+
+    button {
+      height: var(--size-2);
+      min-width: var(--size-4);
+      border-radius: var(--border-radius);
+      color: var(--invert-text-color);
+      background-color: var(--primary-color);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: var(--accent-color);
+    }
+  }
 }
 
 .cardImage {
@@ -66,15 +63,15 @@
   display: block;
 }
 
-.cardInactive .cardImage {
-  border-style: dashed;
-  /* filter: blur(2px); */
-  /* background-color: var(--border-color); */
-}
+.cardInactive {
+  border: 1px dashed var(--border-color);
+  box-shadow: none;
 
-.cardInactive .cardImage img {
-  width: 64px;
-}
+  .cardImage {
+    border-style: dashed;
+  }
 
-.card:hover {
+  img {
+    width: 100%;
+  }
 }
