@@ -48,7 +48,6 @@ class LyrionServer {
       },
     });
     const data = await response.json();
-
     const payload = PlayerResultSchema.parse(data);
     return payload.result.players_loop || [];
   }
