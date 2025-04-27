@@ -3,3 +3,9 @@
 @import "./styles/layout.css";
 @import "./styles/button.css";
 @import "./styles/form.css";
+
+.actionSelectorContainer {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--size-1);
+}
