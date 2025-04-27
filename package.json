@@ -10,7 +10,9 @@
     "start": "react-router-serve ./build/server/index.js",
     "test": "vitest",
     "test:e2e": "playwright test",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@react-router/node": "^7.0.0",
@@ -25,18 +27,28 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
     "@eslint/compat": "^1.2.8",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.25.1",
     "@playwright/test": "^1.52.0",
     "@react-router/dev": "^7.0.0",
     "@react-router/fs-routes": "^7.5.1",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/experimental-addon-test": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
+    "@storybook/test": "^8.6.12",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^22.14.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
+    "@vitest/browser": "^3.1.2",
+    "@vitest/coverage-v8": "^3.1.2",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.0.0",
     "eslint-import-resolver-typescript": "^4.0.0",
@@ -44,10 +56,13 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-storybook": "^0.12.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^16.0.0",
     "happy-dom": "^17.4.4",
+    "playwright": "^1.52.0",
     "postcss": "^8.4.38",
+    "storybook": "^8.6.12",
     "typescript": "^5.1.6",
     "vite": "^6.0.0",
     "vite-tsconfig-paths": "^5.0.0",
@@ -55,5 +70,10 @@
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
