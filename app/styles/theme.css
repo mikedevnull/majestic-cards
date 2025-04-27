@@ -1,0 +1,17 @@
+:root {
+  --primary-color: #00b080;
+  --accent-color: #6dc57b;
+  --text-color: #384b42;
+  --invert-text-color: #fff;
+  --border-color: #9ab0a6;
+  --border-radius: 8px;
+  --shadow-offset: 4px;
+  --shadow-blur: 4px;
+  --shadow-color: var(--border-color);
+  --size-1: 16px;
+  --size-2: 32px;
+  --size-3: 48px;
+  --size-4: 72px;
+  --size-5: 144px;
+  --size-6: 192px;
+}

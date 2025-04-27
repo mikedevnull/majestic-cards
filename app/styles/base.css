@@ -1,0 +1,8 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--text-color);
+}
+
+a {
+  color: var(--primary-color);
+}
