@@ -28,12 +28,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <nav className="navbar bg-base-200">
-          <div className="flex-1">
-            <span className="text-xl">
-              🎴 Majestic Cards
-            </span>
-          </div>
+        <nav className="navbar bg-base-200 shadow-sm">
+          <a className="btn btn-ghost text-xl">Majestic Cards</a>
         </nav>
         {children}
       </body>
