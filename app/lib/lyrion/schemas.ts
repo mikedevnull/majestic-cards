@@ -10,6 +10,30 @@ export const MuteResponseSchema = z.object({
 
 export type MuteResponse = z.infer<typeof MuteResponseSchema>;
 
+export const PlayerInfoSchema = z.object({
+  modelname: z.string(),
+  isplayer: z.coerce.boolean(),
+  ip: z.string(),
+  uuid: z.string().nullable(),
+  isplaying: z.coerce.boolean(),
+  displaytype: z.string(),
+  firmware: z.any(),
+  name: z.string(),
+  playerid: z.string(),
+  canpoweroff: z.coerce.boolean(),
+  power: z.coerce.boolean(),
+  connected: z.coerce.boolean(),
+  model: z.string(),
+  playerindex: z.union([z.number(), z.string()]),
+});
+
+export type PlayerInfo = z.infer<typeof PlayerInfoSchema>;
+
+export const PlayerListResponse = z.object({
+  players_loop: z.array(PlayerInfoSchema),
+  count: z.number(),
+});
+
 /**
  * Schema map for easy lookup by command type
  */
