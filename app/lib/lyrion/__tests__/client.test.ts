@@ -208,6 +208,164 @@ describe("LyrionClient", () => {
     });
   });
 
+  describe("player list", () => {
+    it("should get a list of available players", async () => {
+      const mockResponse: JsonRpcResponse = {
+        params: ["", ["players", "0", "10"]],
+        method: "slim.request",
+        id: 1,
+        result: {
+          players_loop: [
+            {
+              playerid: "bb:bb:9a:df:f6:c7",
+              power: 1,
+              canpoweroff: 1,
+              playerindex: "0",
+              connected: 1,
+              model: "squeezelite",
+              ip: "abcdf",
+              modelname: "UPnPBridge",
+              isplayer: 1,
+              firmware: 0,
+              displaytype: "none",
+              name: "Acme 100",
+              seq_no: 0,
+              isplaying: 0,
+              uuid: null,
+            },
+            {
+              ip: "192.168.1.23:40666",
+              modelname: "UPnPBridge",
+              isplayer: 1,
+              firmware: 0,
+              displaytype: "none",
+              name: "Acme 300",
+              seq_no: 0,
+              isplaying: 0,
+              uuid: null,
+              playerid: "bb:bb:4c:9e:a9:92",
+              power: 1,
+              canpoweroff: 1,
+              playerindex: 1,
+              connected: 1,
+              model: "squeezelite",
+            },
+            {
+              modelname: "Squeezebox Radio",
+              isplayer: 1,
+              ip: "192.168.1.130:52741",
+              seq_no: "6",
+              uuid: "8b99175025686e1c8f522ee31ee51288",
+              isplaying: 0,
+              displaytype: "none",
+              firmware: "9.0.1",
+              name: "controller: 00:04:20:26:7f:",
+              playerid: "00:04:20:26:7f:30",
+              canpoweroff: 1,
+              power: 0,
+              connected: 1,
+              model: "baby",
+              playerindex: 2,
+            },
+            {
+              modelname: "UPnPBridge",
+              isplayer: 1,
+              ip: "192.168.1.2:40696",
+              seq_no: 0,
+              uuid: null,
+              isplaying: 0,
+              displaytype: "none",
+              firmware: 0,
+              name: "foobar",
+              playerid: "bb:bb:e0:77:90:85",
+              canpoweroff: 1,
+              power: 1,
+              connected: 1,
+              model: "squeezelite",
+              playerindex: 3,
+            },
+          ],
+          count: 4,
+        },
+      };
+      const mockFetch = vi.mocked(fetch);
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      } as Response);
+
+      const players = await client.getPlayers();
+      expect(players.length).toEqual(mockResponse.result.count);
+      const expectedPlayers = [
+        {
+          playerid: "bb:bb:9a:df:f6:c7",
+          power: true,
+          canpoweroff: true,
+          playerindex: "0",
+          connected: true,
+          model: "squeezelite",
+          ip: "abcdf",
+          modelname: "UPnPBridge",
+          isplayer: true,
+          firmware: 0,
+          displaytype: "none",
+          name: "Acme 100",
+          isplaying: false,
+          uuid: null,
+        },
+        {
+          ip: "192.168.1.23:40666",
+          modelname: "UPnPBridge",
+          isplayer: true,
+          firmware: 0,
+          displaytype: "none",
+          name: "Acme 300",
+          isplaying: false,
+          uuid: null,
+          playerid: "bb:bb:4c:9e:a9:92",
+          power: true,
+          canpoweroff: true,
+          playerindex: 1,
+          connected: true,
+          model: "squeezelite",
+        },
+        {
+          modelname: "Squeezebox Radio",
+          isplayer: true,
+          ip: "192.168.1.130:52741",
+          uuid: "8b99175025686e1c8f522ee31ee51288",
+          isplaying: false,
+          displaytype: "none",
+          firmware: "9.0.1",
+          name: "controller: 00:04:20:26:7f:",
+          playerid: "00:04:20:26:7f:30",
+          canpoweroff: true,
+          power: false,
+          connected: true,
+          model: "baby",
+          playerindex: 2,
+        },
+        {
+          modelname: "UPnPBridge",
+          isplayer: true,
+          ip: "192.168.1.2:40696",
+          uuid: null,
+          isplaying: false,
+          displaytype: "none",
+          firmware: 0,
+          name: "foobar",
+          playerid: "bb:bb:e0:77:90:85",
+          canpoweroff: true,
+          power: true,
+          connected: true,
+          model: "squeezelite",
+          playerindex: 3,
+        },
+      ];
+      expect(players).toEqual(expectedPlayers);
+    });
+  });
+
   describe("error handling", () => {
     it("should handle invalid response format", async () => {
       const mockFetch = vi.mocked(fetch);

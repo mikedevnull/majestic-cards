@@ -4,6 +4,8 @@ import {
   JsonRpcResponseSchema,
   MuteResponse,
   MuteResponseSchema,
+  PlayerInfo,
+  PlayerListResponse,
 } from "./schemas";
 
 /**
@@ -53,6 +55,12 @@ export class LyrionClient {
     } catch (error) {
       throw this.createError(error, requestPayload);
     }
+  }
+
+  async getPlayers(): Promise<PlayerInfo[]> {
+    const command = ["players", "0", "100"];
+    const response = await this.request("", command);
+    return PlayerListResponse.parse(response.result).players_loop;
   }
 
   /**
