@@ -26,7 +26,11 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm run typecheck
-      - run: npm run test
+      - run: npm run test:coverage -- --reporter=json
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/coverage-final.json
       #- name: Install Playwright Browsers
       #  run: npx playwright install --with-deps
       #- name: Run Playwright tests

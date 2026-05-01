@@ -9,3 +9,6 @@
 # prisma and database
 app/generated/
 *.db
+
+# testing
+/coverage/
