@@ -2,7 +2,7 @@ import type { Route } from "./+types/card-list";
 import prisma from "../lib/prisma";
 import { Link } from "react-router";
 
-export function meta({ }: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "New React Router App" },
     { name: "description", content: "Welcome to React Router!" },

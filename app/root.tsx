@@ -10,7 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
-export function meta({ }: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Majestic Cards" },
     { name: "description", content: "Majestic Cards Controlling Your Sound" },
