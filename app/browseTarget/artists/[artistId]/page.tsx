@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LyrionClient, { getLyrionClient } from "../../../lib/lyrion/client";
+import { getLyrionClient } from "../../../lib/lyrion/client";
 
 type BrowseableItem = {
     title: string;
@@ -8,9 +8,7 @@ type BrowseableItem = {
     imageUrl?: string;
 };
 
-function toArtworkUrl(client: LyrionClient, id: string | undefined) {
-    return id ? client.urlForArtworkId(id) : "/music.svg";
-}
+
 
 async function getAlbums(artistId: number): Promise<Array<BrowseableItem>> {
     "use cache";
@@ -28,7 +26,7 @@ async function getAlbums(artistId: number): Promise<Array<BrowseableItem>> {
             title: a.album,
             id: a.id.toString(),
             subtitle: a.artist,
-            imageUrl: toArtworkUrl(client, a.artwork_track_id),
+            imageUrl: a.artwork_track_id,
         }));
         albums = albums.concat(moreAlbums);
         if (moreAlbums.length === 0) {
@@ -51,15 +49,15 @@ export default async function AlbumsByArtist({
         <>
             <ul className="list  bg-base-100 rounded-box shadow-md">
                 {albums.map((a) => {
-                    const artwork = a.imageUrl ? (
+                    const artwork = (
                         <Image
                             className="rounded-box size-10"
                             sizes="10vw"
                             fill={true}
                             alt={a.title}
-                            src={a.imageUrl}
+                            src={a.imageUrl ? `/api/albumArtwork/${a.imageUrl}` : "/music.svg"}
                         />
-                    ) : undefined;
+                    );
 
                     return (
                         <li className="list-row" key={a.id}>
