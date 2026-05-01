@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   images: {
+    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -9,6 +11,7 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "**",
       },
+      new URL(`${process.env.LYRION_URL}/music/*/cover`),
     ],
   },
   /* config options here */

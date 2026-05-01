@@ -1,5 +1,7 @@
 import type { LyrionClientConfig, JsonRpcRequest, LyrionError } from "./types";
 import {
+  AlbumListResponse,
+  ArtistListResponse,
   JsonRpcResponse,
   JsonRpcResponseSchema,
   MuteResponse,
@@ -7,6 +9,12 @@ import {
   PlayerInfo,
   PlayerListResponse,
 } from "./schemas";
+
+export function getLyrionClient() {
+  return new LyrionClient({
+    baseUrl: process.env.LYRION_URL || "http://localhost:9001",
+  });
+}
 
 /**
  * Lyrion Media Server JSON-RPC client
@@ -57,6 +65,10 @@ export class LyrionClient {
     }
   }
 
+  urlForArtworkId(id: string) {
+    return `${this.baseUrl}/music/${id}/cover`;
+  }
+
   async getPlayers(): Promise<PlayerInfo[]> {
     const command = ["players", "0", "100"];
     const response = await this.request("", command);
@@ -89,6 +101,31 @@ export class LyrionClient {
     const command = ["mixer", "muting", "?"];
     const response = await this.request(playerId, command);
     return MuteResponseSchema.parse(response.result);
+  }
+
+  async browseArtists(offset: number, limit: number) {
+    const command = [
+      "artists",
+      offset.toString(),
+      limit.toString(),
+      "role_id:ALBUMARTIST",
+      //"include_online_only_artists:1", // re-enable once we support querying albums for online only artists
+      "tags:4s",
+    ];
+    const response = await this.request("", command);
+    return ArtistListResponse.parse(response.result);
+  }
+
+  async browseAlbums(artistId: number, offset: number, limit: number) {
+    const command = [
+      "albums",
+      offset.toString(),
+      limit.toString(),
+      `artist_id:${artistId}`,
+      "tags:lja4",
+    ];
+    const response = await this.request("", command);
+    return AlbumListResponse.parse(response.result);
   }
 
   /**

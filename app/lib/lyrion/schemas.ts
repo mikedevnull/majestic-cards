@@ -34,6 +34,35 @@ export const PlayerListResponse = z.object({
   count: z.number(),
 });
 
+export const ArtistInfoSchema = z.object({
+  id: z.number(),
+  textkey: z.string(),
+  artist: z.string(),
+});
+
+export const ArtistListResponse = z.object({
+  artists_loop: z
+    .array(ArtistInfoSchema)
+    .optional()
+    .transform((x) => x ?? []),
+  count: z.number(),
+});
+
+export const AlbumInfoSchema = z.object({
+  id: z.number(),
+  artwork_track_id: z.string().optional(),
+  artist: z.string(),
+  album: z.string(),
+});
+
+export const AlbumListResponse = z.object({
+  albums_loop: z
+    .array(AlbumInfoSchema)
+    .optional()
+    .transform((x) => x ?? []),
+  count: z.number(),
+});
+
 /**
  * Schema map for easy lookup by command type
  */
