@@ -1,39 +1,30 @@
 {
-  "name": "mc",
-  "version": "0.1.0",
+  "name": "majestic-cards-router",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "prisma:generate": "prisma generate",
-    "db:migrate": "prisma migrate deploy",
-    "db:seed": "prisma db seed"
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^7.8.0",
-    "next": "16.2.4",
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
-    "zod": "^4.0.0"
+    "@react-router/node": "7.14.0",
+    "@react-router/serve": "7.14.0",
+    "isbot": "^5.1.36",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router": "7.14.0"
   },
   "devDependencies": {
-    "@prisma/client": "^7.8.0",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^24.0.0",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@react-router/dev": "7.14.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^22",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "daisyui": "^5.5.19",
-    "dotenv": "^17.4.2",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.4",
-    "prisma": "^7.8.0",
-    "tailwindcss": "^4",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.0",
-    "vitest": "^4.1.5"
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^7"
   }
 }
