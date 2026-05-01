@@ -10,6 +10,14 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+export function meta({ }: Route.MetaArgs) {
+  return [
+    { title: "Majestic Cards" },
+    { name: "description", content: "Majestic Cards Controlling Your Sound" },
+  ];
+}
+
+
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -25,19 +33,22 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full antialiased">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-full flex flex-col">
+        <nav className="navbar bg-base-200 shadow-sm mb-8">
+          <a className="btn btn-ghost text-xl">Majestic Cards</a>
+        </nav>
         {children}
         <ScrollRestoration />
         <Scripts />
       </body>
-    </html>
+    </html >
   );
 }
 
