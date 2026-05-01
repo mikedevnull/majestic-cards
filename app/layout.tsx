@@ -28,7 +28,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <nav className="navbar bg-base-200 shadow-sm">
+        <nav className="navbar bg-base-200 shadow-sm mb-8">
           <a className="btn btn-ghost text-xl">Majestic Cards</a>
         </nav>
         {children}

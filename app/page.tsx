@@ -16,7 +16,22 @@ export default async function Home() {
 
   return (
     <main className="flex-1 w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="fab">
+        <Link href="/browseTarget/artists" className="btn btn-lg btn-circle btn-primary">
+          <svg
+            aria-label="New"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+        </Link>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold mb-8">Playback Items</h1>
 
         {items.length === 0 ? (
