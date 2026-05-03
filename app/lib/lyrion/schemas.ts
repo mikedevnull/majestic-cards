@@ -42,13 +42,15 @@ export const ArtistInfoSchema = z.object({
 
 export type ArtistInfo = z.infer<typeof ArtistInfoSchema>;
 
-export const ArtistListResponse = z.object({
+export const ArtistListResponseSchema = z.object({
   artists_loop: z
     .array(ArtistInfoSchema)
     .optional()
     .transform((x) => x ?? []),
   count: z.number(),
 });
+
+export type ArtistListResponse = z.infer<typeof ArtistListResponseSchema>;
 
 export const AlbumInfoSchema = z.object({
   id: z.number(),
@@ -58,13 +60,15 @@ export const AlbumInfoSchema = z.object({
 });
 export type AlbumInfo = z.infer<typeof AlbumInfoSchema>;
 
-export const AlbumListResponse = z.object({
+export const AlbumListResponseSchema = z.object({
   albums_loop: z
     .array(AlbumInfoSchema)
     .optional()
     .transform((x) => x ?? []),
   count: z.number(),
 });
+
+export type AlbumListResponse = z.infer<typeof AlbumListResponseSchema>;
 
 /**
  * Schema map for easy lookup by command type

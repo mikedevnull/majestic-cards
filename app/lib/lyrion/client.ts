@@ -1,7 +1,7 @@
 import type { LyrionClientConfig, JsonRpcRequest, LyrionError } from "./types";
 import {
-  AlbumListResponse,
-  ArtistListResponse,
+  AlbumListResponseSchema,
+  ArtistListResponseSchema,
   type JsonRpcResponse,
   JsonRpcResponseSchema,
   type MuteResponse,
@@ -103,6 +103,12 @@ export class LyrionClient {
     return MuteResponseSchema.parse(response.result);
   }
 
+  async getAlbumInfo(albumId: string) {
+    const command = ["albums", "0", "1", `album_id:${albumId}`, "tags:lja4"];
+    const response = await this.request("", command);
+    return AlbumListResponseSchema.parse(response.result).albums_loop[0];
+  }
+
   async browseArtists(offset: number, limit: number) {
     const command = [
       "artists",
@@ -113,7 +119,7 @@ export class LyrionClient {
       "tags:4s",
     ];
     const response = await this.request("", command);
-    return ArtistListResponse.parse(response.result);
+    return ArtistListResponseSchema.parse(response.result);
   }
 
   async browseAlbums(artistId: number, offset: number, limit: number) {
@@ -125,7 +131,7 @@ export class LyrionClient {
       "tags:lja4",
     ];
     const response = await this.request("", command);
-    return AlbumListResponse.parse(response.result);
+    return AlbumListResponseSchema.parse(response.result);
   }
 
   /**
