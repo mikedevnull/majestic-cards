@@ -366,6 +366,61 @@ describe("LyrionClient", () => {
     });
   });
 
+  describe("album info", () => {
+    it("should get the metadata of an album by id", async () => {
+      const mockResponse: JsonRpcResponse = {
+        result: {
+          count: 1,
+          albums_loop: [
+            {
+              album: "Greatest Album",
+              favorites_url: "db:album.title=Greates%20Album",
+              favorites_title: "Greatest Album",
+              performance: "",
+              id: 848,
+              artwork_track_id: "12de5fd6",
+              artist: "Mega Artist",
+            },
+          ],
+        },
+        params: ["", ["albums", "0", "1", "album_id:848", "tags:lja4"]],
+        method: "slim.request",
+        id: 1,
+      };
+
+      const mockFetch = vi.mocked(fetch);
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      } as Response);
+      const info = await client.getAlbumInfo("some-album");
+      expect(info).toEqual({
+        album: "Greatest Album",
+        artist: "Mega Artist",
+        artwork_track_id: "12de5fd6",
+        id: 848,
+      });
+    });
+
+    it("should return undefined for invalid or unknown album id", async () => {
+      const mockResponse: JsonRpcResponse = {
+        result: {
+          count: 0,
+        },
+        params: ["", ["albums", "0", "1", "album_id:", "tags:lja4"]],
+        method: "slim.request",
+        id: 1,
+      };
+
+      const mockFetch = vi.mocked(fetch);
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      } as Response);
+      const info = await client.getAlbumInfo("some-album");
+      expect(info).toBeUndefined();
+    });
+  });
   describe("error handling", () => {
     it("should handle invalid response format", async () => {
       const mockFetch = vi.mocked(fetch);
