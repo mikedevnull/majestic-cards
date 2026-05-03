@@ -8,6 +8,7 @@ import {
 
 export default [
   index("routes/card-list.tsx"),
+  route("editCard/:cardId", "routes/edit-card.tsx"),
   ...prefix("browse", [
     layout("routes/browse/layout.tsx", [
       route("artists", "routes/browse/artists.tsx"),
