@@ -1,10 +1,11 @@
 import type { Route } from "./+types/albumsByArtist";
 import albumImage from "../../assets/album.png";
 import { getLyrionClient } from "../../lib/lyrion/client";
-import { Await, useAsyncValue } from "react-router";
-import type { AlbumInfo } from "~/lib/lyrion/schemas";
-import React from "react";
-
+import { Await, redirect, useAsyncValue, useSubmit } from "react-router";
+import { AlbumInfoSchema, type AlbumInfo } from "../../lib/lyrion/schemas";
+import React, { useCallback } from "react";
+import prisma from "../../lib/prisma";
+import { z } from "zod";
 
 export async function loader({ params }: Route.LoaderArgs) {
     const artistId = parseInt(params.artistId)
@@ -14,20 +15,48 @@ export async function loader({ params }: Route.LoaderArgs) {
     return { albums: artists };
 }
 
+const NewFromAlbumInfoRequest = z.object({
+    ...AlbumInfoSchema.shape,
+    id: z.coerce.number()
+});
+
+export async function action({
+    request,
+}: Route.ActionArgs) {
+    const formData = await request.formData().then((form) => Object.fromEntries(form));
+    const newRequest = NewFromAlbumInfoRequest.parse(formData);
+    const client = getLyrionClient();
+    const imageUrl = newRequest.artwork_track_id ? client.urlForArtworkId(newRequest.artwork_track_id) : undefined
+    const data = {
+        title: newRequest.album,
+        subtitle: newRequest.album,
+        imageUrl,
+        backendUrl: `album:${newRequest.id}`
+    }
+    await prisma.playbackItem.create({ data })
+
+    return redirect("/")
+}
 
 function AlbumList() {
     const albums = useAsyncValue() as AlbumInfo[];
+    const submit = useSubmit();
+    const createNewCallback = useCallback((data: AlbumInfo) => { submit(data, { method: "post" },) }, [])
 
-    return <ul className="list  bg-base-100 rounded-box shadow-md">
+
+    return <ul className="list bg-base-100 rounded-box shadow-md">
         {albums.map((a) => {
             const artwork = (
                 <img
                     className="rounded-box size-10"
                     sizes="10vw"
                     alt={a.album}
-                    src={a.artwork_track_id ? `/api/albumArtwork/${a.artwork_track_id}` : albumSvg}
+                    src={a.artwork_track_id ? `/api/albumArtwork/${a.artwork_track_id}` : albumImage}
                 />
             );
+
+            const searchParams = new URLSearchParams()
+            searchParams.append("target", `album:${a.id}`);
 
             return (
                 <li className="list-row" key={a.id}>
@@ -38,8 +67,8 @@ function AlbumList() {
                             {a.artist}
                         </div>
                     </div>
-                    <button className="btn btn-primary">
-                        Select
+                    <button onClick={() => createNewCallback(a)} className="btn btn-primary">
+                        New
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"
