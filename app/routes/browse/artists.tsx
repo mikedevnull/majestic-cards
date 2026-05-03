@@ -1,7 +1,7 @@
 import { Await, Link, useAsyncValue } from "react-router";
 import { getLyrionClient } from "../../lib/lyrion/client";
 import type { Route } from "../browse/+types/artists";
-import artistSvg from "../../assets/artist.svg";
+import artistImage from "../../assets/artist.png";
 import React from "react";
 import type { ArtistInfo } from "~/lib/lyrion/schemas";
 
@@ -19,7 +19,7 @@ function ArtistList() {
             {artists.map((a) => (
                 <li className="list-row hover:bg-base-200" key={a.id}>
                     <div className="size-8 relative">
-                        <img className="rounded-sm" src={artistSvg} alt="" />
+                        <img className="rounded-sm" src={artistImage} alt="" />
                     </div>
                     <Link to={`${a.id}`} className="self-center">
                         <div>{a.artist}</div>

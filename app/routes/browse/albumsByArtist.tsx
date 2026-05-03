@@ -1,5 +1,5 @@
 import type { Route } from "./+types/albumsByArtist";
-import albumSvg from "../../assets/music.svg";
+import albumImage from "../../assets/album.png";
 import { getLyrionClient } from "../../lib/lyrion/client";
 import { Await, useAsyncValue } from "react-router";
 import type { AlbumInfo } from "~/lib/lyrion/schemas";
