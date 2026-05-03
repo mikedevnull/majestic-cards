@@ -3,12 +3,6 @@ import prisma from "../lib/prisma";
 import { Link } from "react-router";
 import musicPlaceholderImage from '../assets/music.png'
 
-export function meta() {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
-}
 
 export async function loader() {
   const playbackItems = await prisma.playbackItem.findMany();
@@ -44,7 +38,7 @@ export default function CardList({ loaderData }: Route.ComponentProps) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {playbackItems.map((item) => (
-            <div key={item.id} className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
+            <div key={item.id} className="card max-w-64  mx-auto bg-base-100 shadow-md hover:shadow-lg transition-shadow">
 
               <figure className="h-48 relative">
                 <img
