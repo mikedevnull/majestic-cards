@@ -15,6 +15,7 @@ datasource db {
 model PlaybackItem {
   id         Int     @id @default(autoincrement())
   title      String
+  subtitle   String?
   backendUrl String?
   imageUrl   String?
   triggerId  String?
