@@ -52,7 +52,7 @@ export default function CardEditor({ loaderData }: Route.ComponentProps) {
 
                     <label className="input">
                         <span className="label">Target</span>
-                        <input type="text" name="target" value={card.backendUrl ?? ""} disabled className="input input-md" />
+                        <input type="text" name="target" value={card.backendUrl ?? ""} readOnly className="input input-md" />
                     </label>
 
                     <input type="text" name="id" defaultValue={card.id} hidden />
