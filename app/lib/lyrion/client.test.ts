@@ -421,6 +421,83 @@ describe("LyrionClient", () => {
       expect(info).toBeUndefined();
     });
   });
+
+  describe("browse artists", () => {
+    it("should browse artists with offset and limit", async () => {
+      const mockResponse: JsonRpcResponse = {
+        id: 1,
+        method: "slim.request",
+        params: ["", ["artists", "0", "10", "role_id:ALBUMARTIST", "tags:4s"]],
+        result: {
+          artists_loop: [
+            { id: 1, textkey: "A", artist: "Artist1" },
+            { id: 2, textkey: "B", artist: "Artist2" },
+          ],
+          count: 2,
+        },
+      };
+      const mockFetch = vi.mocked(fetch);
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      } as Response);
+
+      const result = await client.browseArtists(0, 10);
+
+      expect(result).toEqual(mockResponse.result);
+      const call = JSON.parse(mockFetch.mock.calls[0][1]?.body as string);
+      expect(call.params[1]).toEqual([
+        "artists",
+        "0",
+        "10",
+        "role_id:ALBUMARTIST",
+        "tags:4s",
+      ]);
+    });
+  });
+
+  describe("browse albums", () => {
+    it("should browse albums for an artist", async () => {
+      const artistId = 123;
+      const mockResponse: JsonRpcResponse = {
+        id: 1,
+        method: "slim.request",
+        params: [
+          "",
+          ["albums", "0", "10", `artist_id:${artistId}`, "tags:lja4"],
+        ],
+        result: {
+          albums_loop: [
+            {
+              id: 1,
+              artwork_track_id: "abc",
+              artist: "Artist",
+              album: "Album1",
+            },
+          ],
+          count: 1,
+        },
+      };
+      const mockFetch = vi.mocked(fetch);
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      } as Response);
+
+      const result = await client.browseAlbums(artistId, 0, 10);
+
+      expect(result).toEqual(mockResponse.result);
+      const call = JSON.parse(mockFetch.mock.calls[0][1]?.body as string);
+      expect(call.params[1]).toEqual([
+        "albums",
+        "0",
+        "10",
+        `artist_id:${artistId}`,
+        "tags:lja4",
+      ]);
+    });
+  });
+
   describe("error handling", () => {
     it("should handle invalid response format", async () => {
       const mockFetch = vi.mocked(fetch);
