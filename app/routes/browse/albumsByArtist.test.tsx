@@ -46,9 +46,9 @@ describe("AlbumsByArtist", () => {
             const fakeRequest = mock<Request>();
             const loaderArgs = {
                 request: fakeRequest,
-                unstable_url: new URL("http://localhost/browse/artists/1/albums"),
+                url: new URL("http://localhost/browse/artists/1/albums"),
                 params: { artistId: "1" },
-                unstable_pattern: "/browse/albums/:artistId",
+                pattern: "/browse/albums/:artistId",
                 context: {},
             } as Parameters<typeof albumLoader>[0];
 
@@ -62,9 +62,9 @@ describe("AlbumsByArtist", () => {
             const fakeRequest = mock<Request>();
             const loaderArgs = {
                 request: fakeRequest,
-                unstable_url: new URL("http://localhost/browse/artists/42/albums"),
+                url: new URL("http://localhost/browse/artists/42/albums"),
                 params: { artistId: "42" },
-                unstable_pattern: "/browse/albums/:artistId",
+                pattern: "/browse/albums/:artistId",
                 context: {},
             } as Parameters<typeof albumLoader>[0];
 
@@ -87,9 +87,9 @@ describe("AlbumsByArtist", () => {
 
             const actionArgs = {
                 request: fakeRequest,
-                unstable_url: new URL("http://localhost/browse/albums/1"),
+                url: new URL("http://localhost/browse/albums/1"),
                 params: { artistId: "1" },
-                unstable_pattern: "/browse/albums/:artistId",
+                pattern: "/browse/albums/:artistId",
                 context: {},
             } as Parameters<typeof albumAction>[0];
 
@@ -118,9 +118,9 @@ describe("AlbumsByArtist", () => {
 
             const actionArgs = {
                 request: fakeRequest,
-                unstable_url: new URL("http://localhost/browse/albums/2"),
+                url: new URL("http://localhost/browse/albums/2"),
                 params: { artistId: "2" },
-                unstable_pattern: "/browse/albums/:artistId",
+                pattern: "/browse/albums/:artistId",
                 context: {},
             } as Parameters<typeof albumAction>[0];
 
@@ -149,9 +149,9 @@ describe("AlbumsByArtist", () => {
 
             const actionArgs = {
                 request: fakeRequest,
-                unstable_url: new URL("http://localhost/browse/albums/1"),
+                url: new URL("http://localhost/browse/albums/1"),
                 params: { artistId: "1" },
-                unstable_pattern: "/browse/albums/:artistId",
+                pattern: "/browse/albums/:artistId",
                 context: {},
             } as Parameters<typeof albumAction>[0];
 
