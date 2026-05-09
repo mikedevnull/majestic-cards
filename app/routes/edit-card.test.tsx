@@ -97,9 +97,9 @@ describe('Card editor', () => {
             fakeRequest.formData.mockResolvedValue(formData)
             const actionArgs: Parameters<typeof cardEditorAction>[0] = {
                 request: fakeRequest,
-                unstable_url: new URL('http://localhost/editCard/2'),
+                url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
-                unstable_pattern: '/editCard/:id',
+                pattern: '/editCard/:id',
                 context: {},
             };
 
@@ -120,9 +120,9 @@ describe('Card editor', () => {
             fakeRequest.formData.mockResolvedValue(formData)
             const actionArgs: Parameters<typeof cardEditorAction>[0] = {
                 request: fakeRequest,
-                unstable_url: new URL('http://localhost/editCard/2'),
+                url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
-                unstable_pattern: '/editCard/:id',
+                pattern: '/editCard/:id',
                 context: {},
             };
 
@@ -142,9 +142,9 @@ describe('Card editor', () => {
             fakeRequest.formData.mockResolvedValue(formData)
             const actionArgs: Parameters<typeof cardEditorAction>[0] = {
                 request: fakeRequest,
-                unstable_url: new URL('http://localhost/editCard/2'),
+                url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
-                unstable_pattern: '/editCard/:id',
+                pattern: '/editCard/:id',
                 context: {},
             };
 
@@ -160,9 +160,9 @@ describe('Card editor', () => {
             fakeRequest.formData.mockResolvedValue(formData)
             const actionArgs: Parameters<typeof cardEditorAction>[0] = {
                 request: fakeRequest,
-                unstable_url: new URL('http://localhost/editCard/2'),
+                url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
-                unstable_pattern: '/editCard/:id',
+                pattern: '/editCard/:id',
                 context: {},
             };
 
@@ -178,9 +178,9 @@ describe('Card editor', () => {
             const fakeRequest = mock<Request>()
             const loaderArgs: Parameters<typeof cardEditorLoader>[0] = {
                 request: fakeRequest,
-                unstable_url: new URL('http://localhost/editCard/2'),
+                url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
-                unstable_pattern: '/editCard/:id',
+                pattern: '/editCard/:id',
                 context: {},
             };
 
@@ -211,9 +211,9 @@ describe('Card editor', () => {
             const fakeRequest = mock<Request>()
             const loaderArgs: Parameters<typeof cardEditorLoader>[0] = {
                 request: fakeRequest,
-                unstable_url: new URL('http://localhost/editCard/2'),
+                url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
-                unstable_pattern: '/editCard/:id',
+                pattern: '/editCard/:id',
                 context: {},
             };
 
