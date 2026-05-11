@@ -41,7 +41,7 @@ export async function action({
 function AlbumList() {
     const albums = useAsyncValue() as AlbumInfo[];
     const submit = useSubmit();
-    const createNewCallback = useCallback((data: AlbumInfo) => { submit(data, { method: "post" },) }, [])
+    const createNewCallback = useCallback((data: AlbumInfo) => { submit(data, { method: "post" },) }, [submit])
 
 
     return <ul className="list bg-base-100 rounded-box shadow-md">
