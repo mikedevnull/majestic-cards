@@ -1,4 +1,4 @@
-import { createRoutesStub } from "react-router";
+import { createRoutesStub, RouterContextProvider } from "react-router";
 import userEvent from '@testing-library/user-event'
 import {
     render,
@@ -100,7 +100,7 @@ describe('Card editor', () => {
                 url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
                 pattern: '/editCard/:id',
-                context: {},
+                context: new RouterContextProvider(),
             };
 
             const resp = await cardEditorAction(actionArgs);
@@ -123,7 +123,7 @@ describe('Card editor', () => {
                 url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
                 pattern: '/editCard/:id',
-                context: {},
+                context: new RouterContextProvider(),
             };
 
             const resp = await cardEditorAction(actionArgs);
@@ -145,7 +145,7 @@ describe('Card editor', () => {
                 url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
                 pattern: '/editCard/:id',
-                context: {},
+                context: new RouterContextProvider(),
             };
 
             await expect(cardEditorAction(actionArgs)).rejects.toThrow();
@@ -163,7 +163,7 @@ describe('Card editor', () => {
                 url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
                 pattern: '/editCard/:id',
-                context: {},
+                context: new RouterContextProvider(),
             };
 
             await expect(cardEditorAction(actionArgs)).rejects.toThrow();
@@ -181,7 +181,7 @@ describe('Card editor', () => {
                 url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
                 pattern: '/editCard/:id',
-                context: {},
+                context: new RouterContextProvider(),
             };
 
             prisma.playbackItem.findUnique.mockResolvedValue({
@@ -214,7 +214,7 @@ describe('Card editor', () => {
                 url: new URL('http://localhost/editCard/2'),
                 params: { cardId: '2' },
                 pattern: '/editCard/:id',
-                context: {},
+                context: new RouterContextProvider(),
             };
 
             prisma.playbackItem.findUnique.mockResolvedValue(null)

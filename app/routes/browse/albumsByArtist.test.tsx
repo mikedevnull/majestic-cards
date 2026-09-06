@@ -1,4 +1,4 @@
-import { createRoutesStub } from "react-router";
+import { createRoutesStub, RouterContextProvider } from "react-router";
 import userEvent from "@testing-library/user-event";
 import {
     render,
@@ -49,7 +49,7 @@ describe("AlbumsByArtist", () => {
                 url: new URL("http://localhost/browse/artists/1/albums"),
                 params: { artistId: "1" },
                 pattern: "/browse/albums/:artistId",
-                context: {},
+                context: new RouterContextProvider(),
             } as Parameters<typeof albumLoader>[0];
 
             const result = await albumLoader(loaderArgs);
@@ -65,7 +65,7 @@ describe("AlbumsByArtist", () => {
                 url: new URL("http://localhost/browse/artists/42/albums"),
                 params: { artistId: "42" },
                 pattern: "/browse/albums/:artistId",
-                context: {},
+                context: new RouterContextProvider(),
             } as Parameters<typeof albumLoader>[0];
 
             await albumLoader(loaderArgs);
@@ -90,7 +90,7 @@ describe("AlbumsByArtist", () => {
                 url: new URL("http://localhost/browse/albums/1"),
                 params: { artistId: "1" },
                 pattern: "/browse/albums/:artistId",
-                context: {},
+                context: new RouterContextProvider(),
             } as Parameters<typeof albumAction>[0];
 
             const resp = await albumAction(actionArgs);
@@ -121,7 +121,7 @@ describe("AlbumsByArtist", () => {
                 url: new URL("http://localhost/browse/albums/2"),
                 params: { artistId: "2" },
                 pattern: "/browse/albums/:artistId",
-                context: {},
+                context: new RouterContextProvider(),
             } as Parameters<typeof albumAction>[0];
 
             const resp = await albumAction(actionArgs);
@@ -152,7 +152,7 @@ describe("AlbumsByArtist", () => {
                 url: new URL("http://localhost/browse/albums/1"),
                 params: { artistId: "1" },
                 pattern: "/browse/albums/:artistId",
-                context: {},
+                context: new RouterContextProvider(),
             } as Parameters<typeof albumAction>[0];
 
             await expect(albumAction(actionArgs)).rejects.toThrow();
